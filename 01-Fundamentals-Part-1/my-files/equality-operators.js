@@ -1,0 +1,10 @@
+console.log('5' == 5); // true
+console.log('5' === 5); // false
+console.log(null == null); // true
+console.log(null === null); // true
+console.log(undefined == undefined); // true
+console.log(undefined === undefined); // true
+console.log(0 == undefined); // false
+console.log(NaN == NaN); // false
+console.log(18 == 18.0); // true
+console.log(18 === 18.0); // true
