@@ -8,6 +8,6 @@ const log = console.log;
 
 log(dima);
 
-log(dima.name)
-log(dima['name'])
+log(dima.name);
+log(dima['name']);
 log(dima['a' + 'g' + 'e']);
