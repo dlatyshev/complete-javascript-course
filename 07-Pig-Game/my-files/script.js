@@ -18,18 +18,22 @@ let currentScore = 0;
 let activePlayer = 0;
 
 // Functions
+function hideElements(...elements) {
+  for (let element of elements) {
+    element.classList.add('hidden');
+  }
+}
+
+function showElements(...elements) {
+  for (let element of elements) {
+    element.classList.remove('hidden');
+  }
+}
+
 function rollTheDice() {
   const diceRoll = Math.trunc(Math.random() * 6) + 1;
   diceElement.src = `dice-${diceRoll}.png`;
   return diceRoll;
-}
-
-function displayDiceRoll() {
-  diceElement.classList.remove('hidden');
-}
-
-function hideDice() {
-  diceElement.classList.add('hidden');
 }
 
 function switchActivePlayer() {
@@ -50,8 +54,7 @@ function resetGame() {
   scores[1] = 0;
   playerOneSection.classList.remove('player--winner');
   playerTwoSection.classList.remove('player--winner');
-  rollDiceButton.classList.remove('hidden');
-  holdButton.classList.remove('hidden');
+  showElements(rollDiceButton, holdButton);
   playerOneSection.classList.add('player--active');
   playerTwoSection.classList.remove('player--active');
 }
@@ -66,7 +69,7 @@ newButton.addEventListener('click', function () {
 
 rollDiceButton.addEventListener('click', function () {
   const diceRoll = rollTheDice();
-  displayDiceRoll();
+  showElements(diceElement);
 
   if (diceRoll !== 1) {
     currentScore += diceRoll;
@@ -91,9 +94,7 @@ holdButton.addEventListener('click', function () {
     userTwoCurrentScoreElement.textContent = 0;
   }
   if (scores[activePlayer] >= 30) {
-    diceElement.classList.add('hidden');
-    rollDiceButton.classList.add('hidden');
-    holdButton.classList.add('hidden');
+    hideElements(diceElement, rollDiceButton, holdButton);
     document
       .querySelector(`.player--${activePlayer}`)
       .classList.add('player--winner');
